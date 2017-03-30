@@ -138,31 +138,31 @@ function createJSON(pmeatCheapest,pmeatPercentage, pcheeseCheapest, pcheesePerce
     info.code_link = "https://github.com/zlatanp/coding-challenge.renderedtext";
     
     var answer = new Array();
-    var j = 1;
-    var vrednosti = new Array();
-    vrednosti.push(pmeatCheapest);
-    vrednosti.push(pmeatPercentage);
-    vrednosti.push(pcheeseCheapest);
-    vrednosti.push(pcheesePercentage);
-    vrednosti.push(pmeatOliveCheapest);
-    vrednosti.push(pmeatOlivePercentage);
-    vrednosti.push(pmozzarelaMushroomsCheapest);
-    vrednosti.push(pmozzarelaMushroomsPercentage);
+    var groupIndex = 1;
+    var paramList = new Array();
+    paramList.push(pmeatCheapest);
+    paramList.push(pmeatPercentage);
+    paramList.push(pcheeseCheapest);
+    paramList.push(pcheesePercentage);
+    paramList.push(pmeatOliveCheapest);
+    paramList.push(pmeatOlivePercentage);
+    paramList.push(pmozzarelaMushroomsCheapest);
+    paramList.push(pmozzarelaMushroomsPercentage);
     
-    for(var i=0;i<vrednosti.length;i+=2){
-        var grupaObj = new Object();
-        var grupa = new Object();
-        var pomPica = new Object();
-        var pomSastojak = new Object();
-        grupa.percentage = vrednosti[i+1] + "%";
-        pomSastojak.ingredients = vrednosti[i].ingredients;
-        pomPica[vrednosti[i].ime]= pomSastojak;
-        pomPica.price = vrednosti[i].cena;
-        grupa.cheapest = pomPica;
-        var imeGrupe = "group_" + j;
-        grupaObj[imeGrupe] = grupa;
-        answer.push(grupaObj);
-        j++;
+    for(var i=0;i<paramList.length;i+=2){
+        var groupObj = new Object();
+        var group = new Object();
+        var tempPizza = new Object();
+        var tempIngredients = new Object();
+        group.percentage = paramList[i+1] + "%";
+        tempIngredients.ingredients = paramList[i].ingredients;
+        tempPizza[paramList[i].ime]= tempIngredients;
+        tempPizza.price = paramList[i].cena;
+        group.cheapest = tempPizza;
+        var imeGrupe = "group_" + groupIndex;
+        groupObj[imeGrupe] = group;
+        answer.push(groupObj);
+        groupIndex++;
     }
     
     finalJson.personal_info = info;
